@@ -25,7 +25,7 @@ public class BookController {
 
     @GetMapping("/")
     public String welcome() {
-        return "welcome";
+        return "welcome to BookList Services";
     }
 
     @PostMapping("/add")
