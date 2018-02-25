@@ -26,7 +26,7 @@ public class BookControllerTests {
 
     @Test
     public void testBookList() throws Exception{
-        ResponseEntity<String> entity = restTemplate.getForEntity("http://localhost:" + this.port + "/list", String.class);
+        ResponseEntity<String> entity = restTemplate.getForEntity("http://localhost:" + this.port + "/", String.class);
         assertEquals(HttpStatus.OK, entity.getStatusCode());
     }
 

@@ -1,26 +1,36 @@
 package com.demo.web.app01.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Book {
 
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
     private String authorName;
     private float price;
 
-    public Book(int id, String name, String authorName, float price) {
-        this.id = id;
+    public Book(String name, String authorName, float price) {
         this.name = name;
         this.authorName = authorName;
         this.price = price;
     }
 
-    public int getId() {
+    public Book() {
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -58,6 +68,13 @@ public class Book {
                 Float.compare(book.price, price) == 0 &&
                 Objects.equals(name, book.name) &&
                 Objects.equals(authorName, book.authorName);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+                "Book[id=%d, name='%s', authorName='%s', price=%f]",
+                id, name, authorName, price);
     }
 
     @Override

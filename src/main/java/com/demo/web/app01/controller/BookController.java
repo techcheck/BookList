@@ -1,30 +1,31 @@
 package com.demo.web.app01.controller;
 
 import com.demo.web.app01.model.Book;
-import com.demo.web.app01.service.BookService;
+import com.demo.web.app01.service.BookRepository;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class BookController {
 
     @Autowired
-    BookService bookService;
+    BookRepository bookRepository;
 
     @GetMapping("/list")
-    public List<Book> getBookList() {
-        return bookService.getAllBooks();
+    public Iterable<Book> getBookList() {
+        return bookRepository.findAll();
+        //return bookService.getAllBooks();
     }
 
     @GetMapping("/{id}")
-    public Book getBookById(@PathVariable int id) {
-        return bookService.getBookById(id);
+    public Optional<Book> getBookById(@PathVariable Long id) {
+        return bookRepository.findById(id);
     }
 
     @GetMapping("/")
@@ -33,8 +34,9 @@ public class BookController {
     }
 
     @PostMapping("/add")
-    public List<Book> addBook(@RequestBody Book newBook) {
-        return bookService.addBook(newBook);
+    public Iterable<Book> addBook(@RequestBody Book newBook) {
+        bookRepository.save(newBook);
+        return bookRepository.findAll();
     }
 
     @GetMapping("/hostInfo")

@@ -1,2 +1,17 @@
 server:
   port: 9080
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        temp:
+          use_jdbc_metadata_defaults: false
+    show-sql: true
+  datasource:
+    url: jdbc:postgresql://postgres:5432/book
+    username: bookadmin
+    password: bookpass
