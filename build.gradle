@@ -26,11 +26,6 @@ group = 'techcheck'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
-jar {
-    baseName = 'spring-boot-docker'
-    version =  '0.1.0'
-}
-archivesBaseName = 'spring-boot-docker'
 //dockerGroup = 'techcheck'
 
 docker {
