@@ -26,8 +26,6 @@ group = 'techcheck'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
-//dockerGroup = 'techcheck'
-
 docker {
     name "${project.group}/${jar.baseName}"
     files jar.archivePath
