@@ -29,7 +29,7 @@ public class BookController {
 
     @GetMapping("/")
     public String welcome() {
-        return "welcome to BookList Services";
+        return "welcome to BookList Services..!! This version containers addition services to get Container / POD details for LOAD BALANCING Test";
     }
 
     @PostMapping("/add")
@@ -37,11 +37,25 @@ public class BookController {
         return bookService.addBook(newBook);
     }
 
-    @GetMapping("/hostInfo")
+    @GetMapping("/hostInfoDetails")
     public JSONObject getHostPodInfo() throws ParseException {
         Map<String, String> env =  System.getenv();
         JSONObject object = (JSONObject) new org.json.simple.parser.JSONParser().parse(JSONObject.toJSONString(env));
         return object;
+    }
+
+    @GetMapping("/host")
+    public String getHostInfo(){
+        Map<String, String> env =  System.getenv();
+        for(String key: env.keySet()){
+            if(key.equalsIgnoreCase("HOSTNAME")){
+                return env.get(key);
+            }else{
+                return System.getenv("HOSTNAME");
+            }
+
+        }
+        return "HostName is not Set";
     }
 
     @GetMapping("/createLogs")
